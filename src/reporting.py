@@ -1,11 +1,14 @@
 from __future__ import annotations
 
+import logging
 from pathlib import Path
 
 import pandas as pd
 
 from .indicators import AnalysisTables
 
+
+LOGGER = logging.getLogger(__name__)
 
 OUTPUT_TABLES = {
     "indicadores_funcao_capital.csv": "function_indicators",
@@ -43,6 +46,8 @@ def save_output_tables(tables: AnalysisTables, reports_dir: Path) -> list[Path]:
         output_path = reports_dir / filename
         getattr(tables, attribute).to_csv(output_path, index=False)
         saved_paths.append(output_path)
+        LOGGER.debug("Tabela salva: %s", output_path)
+    LOGGER.info("Tabelas analiticas salvas: %s", len(saved_paths))
     return saved_paths
 
 
@@ -127,4 +132,5 @@ def save_report(tables: AnalysisTables, reports_dir: Path) -> Path:
     reports_dir.mkdir(parents=True, exist_ok=True)
     report_path = reports_dir / "relatorio_analise.md"
     report_path.write_text(render_report(tables), encoding="utf-8")
+    LOGGER.info("Relatorio salvo: %s", report_path)
     return report_path

@@ -1,11 +1,16 @@
 from __future__ import annotations
 
 import argparse
+import logging
 from pathlib import Path
 
 from .config import ProjectPaths
 from .indicators import build_analysis_tables
+from .logging_utils import configure_logging
 from .reporting import save_output_tables, save_report
+
+
+LOGGER = logging.getLogger(__name__)
 
 
 def parse_args() -> argparse.Namespace:
@@ -16,23 +21,36 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Raiz do projeto. Por padrao, usa a pasta acima de src/.",
     )
+    parser.add_argument(
+        "--verbose",
+        action="store_true",
+        help="Exibe logs detalhados tambem no console.",
+    )
     return parser.parse_args()
 
 
-def main() -> None:
+def main() -> int:
     args = parse_args()
     paths = ProjectPaths.from_root(args.root)
+    configure_logging(paths.analysis_log_path, verbose=args.verbose)
 
-    if not paths.sqlite_path.exists():
-        raise FileNotFoundError("Base SQLite nao encontrada. Execute primeiro: python -m src.pipeline")
+    try:
+        if not paths.sqlite_path.exists():
+            raise FileNotFoundError("Base SQLite nao encontrada. Execute primeiro: python -m src.pipeline")
 
-    tables = build_analysis_tables(paths.sqlite_path)
-    saved_tables = save_output_tables(tables, paths.reports_dir)
-    report_path = save_report(tables, paths.reports_dir)
+        tables = build_analysis_tables(paths.sqlite_path)
+        saved_tables = save_output_tables(tables, paths.reports_dir)
+        report_path = save_report(tables, paths.reports_dir)
+    except Exception:
+        LOGGER.exception("Analise interrompida por erro")
+        return 1
 
-    print(f"Tabelas geradas: {len(saved_tables)}")
-    print(f"Relatorio gerado: {report_path}")
+    LOGGER.info("Resumo da analise")
+    LOGGER.info("Tabelas geradas: %s", len(saved_tables))
+    LOGGER.info("Relatorio gerado: %s", report_path)
+    LOGGER.info("Log salvo em: %s", paths.analysis_log_path)
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

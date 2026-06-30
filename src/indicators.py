@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import logging
 import sqlite3
 from pathlib import Path
 
@@ -8,6 +9,8 @@ import pandas as pd
 
 from .config import EXPENSE_STAGE_COMMITTED, EXPENSE_STAGE_PAID, PRIORITY_FUNCTION_CODES
 
+
+LOGGER = logging.getLogger(__name__)
 
 @dataclass(frozen=True)
 class AnalysisTables:
@@ -22,11 +25,13 @@ class AnalysisTables:
 
 
 def read_sql(db_path: Path, query: str, params: list[str | int] | None = None) -> pd.DataFrame:
+    LOGGER.debug("Executando consulta SQL na base %s", db_path)
     with sqlite3.connect(db_path) as conn:
         return pd.read_sql_query(query, conn, params=params)
 
 
 def load_function_expenses(db_path: Path) -> pd.DataFrame:
+    LOGGER.info("Carregando despesas por funcao")
     query = """
         SELECT
             ano,
@@ -41,7 +46,9 @@ def load_function_expenses(db_path: Path) -> pd.DataFrame:
         WHERE tipo_conta = 'funcao'
           AND estagio IN (?, ?)
     """
-    return read_sql(db_path, query, [EXPENSE_STAGE_COMMITTED, EXPENSE_STAGE_PAID])
+    df = read_sql(db_path, query, [EXPENSE_STAGE_COMMITTED, EXPENSE_STAGE_PAID])
+    LOGGER.debug("Despesas por funcao carregadas: %s linhas", len(df))
+    return df
 
 
 def safe_divide(numerator: pd.Series, denominator: pd.Series) -> pd.Series:
@@ -49,6 +56,7 @@ def safe_divide(numerator: pd.Series, denominator: pd.Series) -> pd.Series:
 
 
 def calculate_execution_indicators(function_expenses: pd.DataFrame) -> pd.DataFrame:
+    LOGGER.info("Calculando indicadores de execucao financeira")
     indicators = (
         function_expenses.pivot_table(
             index=["ano", "capital", "uf", "populacao", "codigo_funcao", "funcao"],
@@ -66,10 +74,13 @@ def calculate_execution_indicators(function_expenses: pd.DataFrame) -> pd.DataFr
     indicators["empenhado_per_capita"] = safe_divide(indicators["empenhado"], indicators["populacao"])
     indicators["pago_per_capita"] = safe_divide(indicators["pago"], indicators["populacao"])
 
-    return indicators.sort_values(["ano", "codigo_funcao", "taxa_execucao"], ascending=[True, True, False])
+    result = indicators.sort_values(["ano", "codigo_funcao", "taxa_execucao"], ascending=[True, True, False])
+    LOGGER.debug("Indicadores calculados: %s linhas", len(result))
+    return result
 
 
 def count_capitals_by_year(db_path: Path) -> pd.DataFrame:
+    LOGGER.info("Calculando completude por ano")
     query = """
         SELECT ano, COUNT(DISTINCT capital) AS qtd_capitais
         FROM despesas
@@ -82,10 +93,13 @@ def count_capitals_by_year(db_path: Path) -> pd.DataFrame:
 def infer_complete_years(completeness: pd.DataFrame) -> tuple[int, ...]:
     max_capitals = completeness["qtd_capitais"].max()
     years = completeness.loc[completeness["qtd_capitais"].eq(max_capitals), "ano"]
-    return tuple(int(year) for year in years)
+    complete_years = tuple(int(year) for year in years)
+    LOGGER.info("Anos completos identificados: %s", ", ".join(map(str, complete_years)))
+    return complete_years
 
 
 def summarize_functions(indicators: pd.DataFrame, complete_years: tuple[int, ...]) -> pd.DataFrame:
+    LOGGER.info("Resumindo funcoes para anos completos")
     base = indicators[indicators["ano"].isin(complete_years)].copy()
     summary = (
         base.groupby(["codigo_funcao", "funcao"], as_index=False)
@@ -106,6 +120,7 @@ def rank_maceio_priority_functions(
     complete_years: tuple[int, ...],
     priority_codes: tuple[str, ...] = PRIORITY_FUNCTION_CODES,
 ) -> pd.DataFrame:
+    LOGGER.info("Calculando ranking de Maceio em funcoes prioritarias")
     base = indicators[
         indicators["ano"].isin(complete_years) & indicators["codigo_funcao"].isin(priority_codes)
     ].copy()
@@ -119,11 +134,13 @@ def rank_maceio_priority_functions(
 
 
 def largest_execution_gaps(indicators: pd.DataFrame, year: int, limit: int = 15) -> pd.DataFrame:
+    LOGGER.info("Selecionando maiores diferencas entre empenhado e pago em %s", year)
     base = indicators[(indicators["ano"].eq(year)) & (indicators["empenhado"] > 0)].copy()
     return base.sort_values("diferenca_empenhado_pago", ascending=False).head(limit)
 
 
 def load_maceio_health_education_subfunctions(db_path: Path, year: int, limit: int = 15) -> pd.DataFrame:
+    LOGGER.info("Carregando subfuncoes de Saude e Educacao de Maceio em %s", year)
     query = """
         SELECT
             ano,
@@ -157,6 +174,7 @@ def load_maceio_health_education_subfunctions(db_path: Path, year: int, limit: i
 
 
 def build_analysis_tables(db_path: Path) -> AnalysisTables:
+    LOGGER.info("Iniciando construcao das tabelas analiticas")
     completeness = count_capitals_by_year(db_path)
     complete_years = infer_complete_years(completeness)
     reference_year = max(complete_years)
@@ -168,7 +186,7 @@ def build_analysis_tables(db_path: Path) -> AnalysisTables:
     largest_gaps = largest_execution_gaps(function_indicators, reference_year)
     maceio_subfunctions = load_maceio_health_education_subfunctions(db_path, reference_year)
 
-    return AnalysisTables(
+    tables = AnalysisTables(
         completeness=completeness,
         function_indicators=function_indicators,
         function_summary=function_summary,
@@ -178,3 +196,5 @@ def build_analysis_tables(db_path: Path) -> AnalysisTables:
         complete_years=complete_years,
         reference_year=reference_year,
     )
+    LOGGER.info("Tabelas analiticas criadas com sucesso")
+    return tables

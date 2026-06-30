@@ -44,3 +44,4 @@ desktop.ini
 # dados_extraidos/ e um artefato intermediario reproduzivel a partir dos ZIPs.
 # ==========================================================================
 dados_extraidos/
+relatorios/logs/

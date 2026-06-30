@@ -30,12 +30,24 @@ class ProjectPaths:
         return self.root / "relatorios"
 
     @property
+    def logs_dir(self) -> Path:
+        return self.reports_dir / "logs"
+
+    @property
     def consolidated_csv_path(self) -> Path:
         return self.processed_data_dir / "finbra_consolidado.csv.gz"
 
     @property
     def sqlite_path(self) -> Path:
         return self.processed_data_dir / "finbra_consolidado.sqlite"
+
+    @property
+    def pipeline_log_path(self) -> Path:
+        return self.logs_dir / "pipeline.log"
+
+    @property
+    def analysis_log_path(self) -> Path:
+        return self.logs_dir / "analysis.log"
 
 
 DEFAULT_PATHS = ProjectPaths.from_root()

@@ -51,6 +51,13 @@ Rode a analise:
 python -m src.analysis
 ```
 
+Os comandos tambem aceitam `--verbose` para exibir detalhes tecnicos no console:
+
+```bash
+python -m src.pipeline --verbose
+python -m src.analysis --verbose
+```
+
 Rode os testes:
 
 ```bash
@@ -63,9 +70,21 @@ python -m unittest discover -s tests
 - `src/finbra_etl.py` concentra o fluxo de extracao e tratamento, deixando `src/pipeline.py` apenas como CLI.
 - `src/indicators.py` concentra consultas e metricas analiticas.
 - `src/reporting.py` concentra formatacao, escrita de CSVs e geracao do relatorio Markdown.
+- `src/logging_utils.py` padroniza logs claros no console e logs detalhados em arquivo.
 - Os anos completos sao inferidos pela maior quantidade de capitais declaradas, em vez de fixar 2024 manualmente.
 - A taxa de execucao usa divisao segura, evitando resultado enganoso quando o empenhado for zero.
 - `dados_extraidos/` e ignorado porque e um artefato intermediario reproduzivel a partir dos ZIPs originais.
+
+## Logs
+
+Cada comando registra um resumo limpo no console e salva um log detalhado em arquivo:
+
+```text
+relatorios/logs/pipeline.log
+relatorios/logs/analysis.log
+```
+
+No console ficam as etapas principais e o resumo final. Nos arquivos ficam timestamps, nivel do log, modulo de origem e mensagens de depuracao. Em caso de erro, a excecao tambem e capturada no arquivo de log para facilitar auditoria e correcao.
 
 ## Tratamento dos dados
 
