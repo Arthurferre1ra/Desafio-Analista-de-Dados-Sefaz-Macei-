@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="442" viewBox="0 0 1120 442" role="img">
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="32.0" y="42.0" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#111827" text-anchor="start">Completude dos dados por ano</text>
+  <text x="32.0" y="70.0" font-family="Arial, sans-serif" font-size="14" font-weight="400" fill="#4b5563" text-anchor="start">Quantidade de capitais declaradas no FINBRA/Siconfi</text>
+  <line x1="32" y1="84" x2="1088" y2="84" stroke="#e5e7eb" stroke-width="1"/>
+  <line x1="260" y1="84" x2="260" y2="382" stroke="#e5e7eb"/>
+  <text x="244.0" y="119.0" font-family="Arial, sans-serif" font-size="14" font-weight="400" fill="#374151" text-anchor="end">2020</text>
+  <rect x="260" y="96" width="700.0" height="34" rx="4" fill="#0f766e"/>
+  <text x="972.0" y="119.0" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#374151" text-anchor="start">26 capitais</text>
+  <text x="244.0" y="167.0" font-family="Arial, sans-serif" font-size="14" font-weight="400" fill="#374151" text-anchor="end">2021</text>
+  <rect x="260" y="144" width="700.0" height="34" rx="4" fill="#0f766e"/>
+  <text x="972.0" y="167.0" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#374151" text-anchor="start">26 capitais</text>
+  <text x="244.0" y="215.0" font-family="Arial, sans-serif" font-size="14" font-weight="400" fill="#374151" text-anchor="end">2022</text>
+  <rect x="260" y="192" width="700.0" height="34" rx="4" fill="#0f766e"/>
+  <text x="972.0" y="215.0" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#374151" text-anchor="start">26 capitais</text>
+  <text x="244.0" y="263.0" font-family="Arial, sans-serif" font-size="14" font-weight="400" fill="#374151" text-anchor="end">2023</text>
+  <rect x="260" y="240" width="700.0" height="34" rx="4" fill="#0f766e"/>
+  <text x="972.0" y="263.0" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#374151" text-anchor="start">26 capitais</text>
+  <text x="244.0" y="311.0" font-family="Arial, sans-serif" font-size="14" font-weight="400" fill="#374151" text-anchor="end">2024</text>
+  <rect x="260" y="288" width="700.0" height="34" rx="4" fill="#0f766e"/>
+  <text x="972.0" y="311.0" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#374151" text-anchor="start">26 capitais</text>
+  <text x="244.0" y="359.0" font-family="Arial, sans-serif" font-size="14" font-weight="400" fill="#374151" text-anchor="end">2025</text>
+  <rect x="260" y="336" width="296.2" height="34" rx="4" fill="#0f766e"/>
+  <text x="568.2" y="359.0" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#374151" text-anchor="start">11 capitais</text>
+</svg>

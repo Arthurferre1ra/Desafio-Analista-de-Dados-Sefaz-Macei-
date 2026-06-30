@@ -17,12 +17,13 @@ O projeto foi organizado para ser simples de reproduzir e facil de avaliar:
 |-- dados_compactos/      # ZIPs originais do desafio
 |-- dados_extraidos/      # CSVs extraidos pelo pipeline (ignorado no Git)
 |-- dados_processados/    # base consolidada CSV gzip + SQLite
-|-- relatorios/           # tabelas analiticas e relatorio em Markdown
+|-- relatorios/           # tabelas analiticas, graficos SVG e relatorio
 |-- src/
 |   |-- config.py         # caminhos, nomes de colunas e constantes do projeto
 |   |-- finbra_etl.py     # extracao, leitura, limpeza e persistencia
 |   |-- indicators.py     # consultas e calculo dos indicadores
 |   |-- reporting.py      # formatacao e escrita dos relatorios
+|   |-- visualizations.py # geracao de graficos SVG
 |   |-- pipeline.py       # entrada de linha de comando do ETL
 |   `-- analysis.py       # entrada de linha de comando da analise
 |-- tests/                # testes unitarios dos pontos criticos
@@ -70,6 +71,7 @@ python -m unittest discover -s tests
 - `src/finbra_etl.py` concentra o fluxo de extracao e tratamento, deixando `src/pipeline.py` apenas como CLI.
 - `src/indicators.py` concentra consultas e metricas analiticas.
 - `src/reporting.py` concentra formatacao, escrita de CSVs e geracao do relatorio Markdown.
+- `src/visualizations.py` gera graficos SVG versionaveis, sem depender de ferramenta externa.
 - `src/logging_utils.py` padroniza logs claros no console e logs detalhados em arquivo.
 - Os anos completos sao inferidos pela maior quantidade de capitais declaradas, em vez de fixar 2024 manualmente.
 - A taxa de execucao usa divisao segura, evitando resultado enganoso quando o empenhado for zero.
@@ -131,6 +133,7 @@ Tambem foram calculados:
 - completude dos dados por ano;
 - recorte de Maceio em funcoes prioritarias;
 - subfuncoes de Saude e Educacao para Maceio no ano completo mais recente.
+- graficos de completude, volume pago por funcao, evolucao de Maceio, maiores gaps e subfuncoes.
 
 ## Resultados
 
@@ -148,6 +151,14 @@ Arquivos auxiliares:
 - `relatorios/maceio_funcoes_prioritarias.csv`
 - `relatorios/maiores_gaps_ano_referencia.csv`
 - `relatorios/maceio_subfuncoes_saude_educacao_ano_referencia.csv`
+
+Graficos gerados:
+
+- `relatorios/figuras/completude_por_ano.svg`
+- `relatorios/figuras/top_funcoes_pagas.svg`
+- `relatorios/figuras/maceio_pago_per_capita.svg`
+- `relatorios/figuras/maiores_gaps_empenhado_pago.svg`
+- `relatorios/figuras/maceio_subfuncoes_empenhado_pago.svg`
 
 ## Observacao sobre 2025
 

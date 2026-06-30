@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="640" viewBox="0 0 1120 640" role="img">
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="32.0" y="42.0" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#111827" text-anchor="start">Evolucao de Maceio por funcao prioritaria</text>
+  <text x="32.0" y="70.0" font-family="Arial, sans-serif" font-size="14" font-weight="400" fill="#4b5563" text-anchor="start">Despesa paga per capita nos anos completos</text>
+  <line x1="32" y1="84" x2="1088" y2="84" stroke="#e5e7eb" stroke-width="1"/>
+  <line x1="86" y1="554" x2="860" y2="554" stroke="#d1d5db"/>
+  <line x1="86" y1="112" x2="86" y2="554" stroke="#d1d5db"/>
+  <line x1="86.0" y1="554" x2="86.0" y2="560" stroke="#9ca3af"/>
+  <text x="86.0" y="582.0" font-family="Arial, sans-serif" font-size="12" font-weight="400" fill="#4b5563" text-anchor="middle">2020</text>
+  <line x1="279.5" y1="554" x2="279.5" y2="560" stroke="#9ca3af"/>
+  <text x="279.5" y="582.0" font-family="Arial, sans-serif" font-size="12" font-weight="400" fill="#4b5563" text-anchor="middle">2021</text>
+  <line x1="473.0" y1="554" x2="473.0" y2="560" stroke="#9ca3af"/>
+  <text x="473.0" y="582.0" font-family="Arial, sans-serif" font-size="12" font-weight="400" fill="#4b5563" text-anchor="middle">2022</text>
+  <line x1="666.5" y1="554" x2="666.5" y2="560" stroke="#9ca3af"/>
+  <text x="666.5" y="582.0" font-family="Arial, sans-serif" font-size="12" font-weight="400" fill="#4b5563" text-anchor="middle">2023</text>
+  <line x1="860.0" y1="554" x2="860.0" y2="560" stroke="#9ca3af"/>
+  <text x="860.0" y="582.0" font-family="Arial, sans-serif" font-size="12" font-weight="400" fill="#4b5563" text-anchor="middle">2024</text>
+  <line x1="86" y1="554.0" x2="860" y2="554.0" stroke="#f3f4f6"/>
+  <text x="76.0" y="558.0" font-family="Arial, sans-serif" font-size="11" font-weight="400" fill="#6b7280" text-anchor="end">R$ 0</text>
+  <line x1="86" y1="443.5" x2="860" y2="443.5" stroke="#f3f4f6"/>
+  <text x="76.0" y="447.5" font-family="Arial, sans-serif" font-size="11" font-weight="400" fill="#6b7280" text-anchor="end">R$ 329</text>
+  <line x1="86" y1="333.0" x2="860" y2="333.0" stroke="#f3f4f6"/>
+  <text x="76.0" y="337.0" font-family="Arial, sans-serif" font-size="11" font-weight="400" fill="#6b7280" text-anchor="end">R$ 657</text>
+  <line x1="86" y1="222.5" x2="860" y2="222.5" stroke="#f3f4f6"/>
+  <text x="76.0" y="226.5" font-family="Arial, sans-serif" font-size="11" font-weight="400" fill="#6b7280" text-anchor="end">R$ 986</text>
+  <line x1="86" y1="112.0" x2="860" y2="112.0" stroke="#f3f4f6"/>
+  <text x="76.0" y="116.0" font-family="Arial, sans-serif" font-size="11" font-weight="400" fill="#6b7280" text-anchor="end">R$ 1.315</text>
+  <polyline points="86.0,428.3 279.5,435.1 473.0,412.2 666.5,367.0 860.0,304.1" fill="none" stroke="#2563eb" stroke-width="3"/>
+  <circle cx="86.0" cy="428.3" r="4" fill="#2563eb"/>
+  <circle cx="279.5" cy="435.1" r="4" fill="#2563eb"/>
+  <circle cx="473.0" cy="412.2" r="4" fill="#2563eb"/>
+  <circle cx="666.5" cy="367.0" r="4" fill="#2563eb"/>
+  <circle cx="860.0" cy="304.1" r="4" fill="#2563eb"/>
+  <rect x="902" y="101" width="14" height="14" fill="#2563eb"/>
+  <text x="924.0" y="113.0" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#374151" text-anchor="start">04 - Administração</text>
+  <polyline points="86.0,535.7 279.5,546.1 473.0,538.2 666.5,536.1 860.0,535.3" fill="none" stroke="#0f766e" stroke-width="3"/>
+  <circle cx="86.0" cy="535.7" r="4" fill="#0f766e"/>
+  <circle cx="279.5" cy="546.1" r="4" fill="#0f766e"/>
+  <circle cx="473.0" cy="538.2" r="4" fill="#0f766e"/>
+  <circle cx="666.5" cy="536.1" r="4" fill="#0f766e"/>
+  <circle cx="860.0" cy="535.3" r="4" fill="#0f766e"/>
+  <rect x="902" y="129" width="14" height="14" fill="#0f766e"/>
+  <text x="924.0" y="141.0" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#374151" text-anchor="start">08 - Assistência Social</text>
+  <polyline points="86.0,296.1 279.5,306.1 473.0,274.1 666.5,138.6 860.0,112.0" fill="none" stroke="#dc2626" stroke-width="3"/>
+  <circle cx="86.0" cy="296.1" r="4" fill="#dc2626"/>
+  <circle cx="279.5" cy="306.1" r="4" fill="#dc2626"/>
+  <circle cx="473.0" cy="274.1" r="4" fill="#dc2626"/>
+  <circle cx="666.5" cy="138.6" r="4" fill="#dc2626"/>
+  <circle cx="860.0" cy="112.0" r="4" fill="#dc2626"/>
+  <rect x="902" y="157" width="14" height="14" fill="#dc2626"/>
+  <text x="924.0" y="169.0" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#374151" text-anchor="start">10 - Saúde</text>
+  <polyline points="86.0,448.7 279.5,427.8 473.0,317.9 666.5,354.4 860.0,313.4" fill="none" stroke="#7c3aed" stroke-width="3"/>
+  <circle cx="86.0" cy="448.7" r="4" fill="#7c3aed"/>
+  <circle cx="279.5" cy="427.8" r="4" fill="#7c3aed"/>
+  <circle cx="473.0" cy="317.9" r="4" fill="#7c3aed"/>
+  <circle cx="666.5" cy="354.4" r="4" fill="#7c3aed"/>
+  <circle cx="860.0" cy="313.4" r="4" fill="#7c3aed"/>
+  <rect x="902" y="185" width="14" height="14" fill="#7c3aed"/>
+  <text x="924.0" y="197.0" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#374151" text-anchor="start">12 - Educação</text>
+  <polyline points="86.0,499.0 279.5,512.5 473.0,492.6 666.5,428.2 860.0,336.3" fill="none" stroke="#ca8a04" stroke-width="3"/>
+  <circle cx="86.0" cy="499.0" r="4" fill="#ca8a04"/>
+  <circle cx="279.5" cy="512.5" r="4" fill="#ca8a04"/>
+  <circle cx="473.0" cy="492.6" r="4" fill="#ca8a04"/>
+  <circle cx="666.5" cy="428.2" r="4" fill="#ca8a04"/>
+  <circle cx="860.0" cy="336.3" r="4" fill="#ca8a04"/>
+  <rect x="902" y="213" width="14" height="14" fill="#ca8a04"/>
+  <text x="924.0" y="225.0" font-family="Arial, sans-serif" font-size="13" font-weight="400" fill="#374151" text-anchor="start">15 - Urbanismo</text>
+</svg>

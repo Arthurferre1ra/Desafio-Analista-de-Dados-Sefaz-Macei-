@@ -8,6 +8,7 @@ from .config import ProjectPaths
 from .indicators import build_analysis_tables
 from .logging_utils import configure_logging
 from .reporting import save_output_tables, save_report
+from .visualizations import save_charts
 
 
 LOGGER = logging.getLogger(__name__)
@@ -40,6 +41,7 @@ def main() -> int:
 
         tables = build_analysis_tables(paths.sqlite_path)
         saved_tables = save_output_tables(tables, paths.reports_dir)
+        chart_paths = save_charts(tables, paths.reports_dir)
         report_path = save_report(tables, paths.reports_dir)
     except Exception:
         LOGGER.exception("Analise interrompida por erro")
@@ -47,6 +49,7 @@ def main() -> int:
 
     LOGGER.info("Resumo da analise")
     LOGGER.info("Tabelas geradas: %s", len(saved_tables))
+    LOGGER.info("Graficos gerados: %s", len(chart_paths))
     LOGGER.info("Relatorio gerado: %s", report_path)
     LOGGER.info("Log salvo em: %s", paths.analysis_log_path)
     return 0

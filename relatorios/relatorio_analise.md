@@ -17,6 +17,8 @@ Analise das despesas por funcao das capitais brasileiras no FINBRA/Siconfi. O fo
 
 O ano de 2025 tem 11 capitais declaradas, contra 26 nos anos completos. Por isso, as conclusoes principais usam 2020 a 2024; anos parciais ficam apenas como referencia de disponibilidade.
 
+![Completude por ano](figuras/completude_por_ano.svg)
+
 ## Funcoes com maior volume pago, 2020 a 2024
 
 | funcao | pago | taxa_execucao |
@@ -31,6 +33,8 @@ O ano de 2025 tem 11 capitais declaradas, contra 26 nos anos completos. Por isso
 | 08 - Assistência Social | R$ 27.710.279.611,45 | 92,0% |
 
 Saude, Educacao, Administracao e Urbanismo aparecem entre as areas mais relevantes do gasto municipal. A taxa de execucao deve ser lida junto com a natureza da funcao, pois obras, contratos longos e restos a pagar podem deslocar pagamentos para exercicios seguintes.
+
+![Funcoes com maior volume pago](figuras/top_funcoes_pagas.svg)
 
 ## Posicao de Maceio em funcoes prioritarias
 
@@ -64,6 +68,8 @@ Saude, Educacao, Administracao e Urbanismo aparecem entre as areas mais relevant
 
 Maceio foi comparada por gasto pago per capita entre capitais no mesmo ano e funcao. Esse indicador reduz a distorcao causada pelo tamanho populacional das capitais.
 
+![Evolucao de Maceio por funcao prioritaria](figuras/maceio_pago_per_capita.svg)
+
 ## Maiores diferencas entre empenhado e pago em 2024
 
 | ano | capital | uf | funcao | diferenca_empenhado_pago | taxa_execucao |
@@ -86,6 +92,8 @@ Maceio foi comparada por gasto pago per capita entre capitais no mesmo ano e fun
 
 Esses casos apontam onde a distancia em reais entre compromisso orcamentario e pagamento efetivo foi maior no ano de referencia. A diferenca pode indicar restos a pagar, atraso de execucao ou caracteristicas do calendario contratual.
 
+![Maiores diferencas entre empenhado e pago](figuras/maiores_gaps_empenhado_pago.svg)
+
 ## Subfuncoes de Saude e Educacao em Maceio, 2024
 
 | conta | empenhado | pago | taxa_execucao |
@@ -106,6 +114,8 @@ Esses casos apontam onde a distancia em reais entre compromisso orcamentario e p
 
 As subfuncoes detalham quais frentes puxam o gasto dentro das funcoes agregadas. Em Maceio, esse recorte mostra onde os pagamentos se concentram dentro de Saude e Educacao.
 
+![Subfuncoes de Saude e Educacao em Maceio](figuras/maceio_subfuncoes_empenhado_pago.svg)
+
 ## Decisoes tecnicas
 
 - Os ZIPs originais sao extraidos por codigo para `dados_extraidos/`.
@@ -114,3 +124,4 @@ As subfuncoes detalham quais frentes puxam o gasto dentro das funcoes agregadas.
 - A base consolidada e salva em `dados_processados/finbra_consolidado.csv.gz`.
 - A base consultavel usa SQLite em `dados_processados/finbra_consolidado.sqlite`, com indices nas dimensoes mais usadas.
 - Os anos completos sao inferidos pela quantidade maxima de capitais declaradas, sem fixar manualmente 2024.
+- Os graficos sao SVGs gerados por codigo, sem depender de ferramenta externa de visualizacao.
